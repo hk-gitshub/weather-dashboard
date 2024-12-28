@@ -3,6 +3,7 @@ import { fetchWeatherData } from "../utils/api"
 import InputForm from "@/components/InputForm";
 import WeatherChart from "@/components/WeatherChart";
 import WeatherTable from "@/components/WeatherTable";
+import Loader from "@/components/Loader";
 
 const Home = () => {
   const [data, setData] = useState(null);
@@ -31,7 +32,7 @@ const Home = () => {
         Weather Dashboard
       </h1>
       <InputForm handleFetchData={handleFetchData} />
-      {loading && <p>Loading...</p>}
+      {loading && <Loader />}
       {error && <p className="text-red-500">{error}</p>}
       {data && (
         <>

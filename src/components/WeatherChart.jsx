@@ -1,8 +1,8 @@
 import React from "react";
 import {
     Chart as ChartJS,
-    CategoryScale, // X-axis scale
-    LinearScale, // Y-axis scale
+    CategoryScale,
+    LinearScale,
     PointElement,
     LineElement,
     Title,
@@ -11,7 +11,6 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
-// Register necessary Chart.js components
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -24,10 +23,22 @@ ChartJS.register(
 
 const WeatherChart = ({ data }) => {
 
-    const dynamicWidth = Math.max(400, data.time.length * 80); // 80px per date
+    const dynamicWidth = Math.max(400, data.time.length * 80);
+
+    const formateDate = (dates) => {
+        const format = dates.map(date => {
+            const dateObj = new Date(date);
+            const day = dateObj.getDate()
+            const month = dateObj.toLocaleString('en-US', { month: 'short' });
+            return `${day} ${month}`;
+        });
+
+        return format
+    }
+
 
     const chartData = {
-        labels: data.time,
+        labels: formateDate(data.time),
         datasets: [
             {
                 label: `Max Temperature (${'\u00b0'}C)`,
@@ -72,29 +83,18 @@ const WeatherChart = ({ data }) => {
 
     const options = {
         responsive: true,
-        maintainAspectRatio: false, // Enable custom height
+        maintainAspectRatio: false,
         plugins: {
             legend: { position: 'top' },
         },
         scales: {
             x: { title: { display: true, text: 'Date' } },
-            y: { title: { display: true, text: `${'\u00b0'}C` }},
+            y: { title: { display: true, text: `${'\u00b0'}C` } },
         },
     };
-    // return(
-    //     <div className="flex justify-center items-center mb-2" >
-    //         <div className="w-full sm:w-4/5 md:w-2/3 lg:w-1/2 xl:w-1/2">
-    //             <div className="relative" style={{height: '400px'}}>
-    //                 <Line data={chartData} options={options} />
-    //             </div>
-    //         </div>
-    //     </div>
-    // )
 
     return (
-        <div
-            className="overflow-auto w-full flex justify-center pt-6"
-        >
+        <div className="overflow-auto w-full flex justify-center pt-6">
             <div style={{ width: `${dynamicWidth}px`, height: "400px" }}>
                 <Line data={chartData} options={options} />
             </div>
