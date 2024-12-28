@@ -27,7 +27,7 @@ const Home = () => {
 
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto w-fit">
       <h1 className="text-3xl font-bold mb-6 flex justify-center">
         Weather Dashboard
       </h1>

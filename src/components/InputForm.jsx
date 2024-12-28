@@ -29,7 +29,7 @@ const InputForm = ({ handleFetchData }) => {
     return (
         <form
             onSubmit={handleSubmit}
-            className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 mb-6 p-4 border rounded-lg shadow-lg bg-white"
+            className=" grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 mb-6 p-4 border rounded-lg shadow-lg bg-white"
         >
             <input
                 type="number"
@@ -67,7 +67,7 @@ const InputForm = ({ handleFetchData }) => {
                         ranges={dateRange}
                         onChange={handleDateRangeChange}
                         moveRangeOnFirstSelection={false}
-                        className="z-50 shadow-lg border rounded-lg"
+                        className="z-auto shadow-lg border rounded-lg"
                     />
                 </div>
             )}
