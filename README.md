@@ -10,7 +10,7 @@ Follow these steps to set up and run the project:
 
 2. Install dependencies:
    ```bash
-   npm install --force
+   npm install --legacy-peer-deps
    ```
 
 3. Start the development server:
